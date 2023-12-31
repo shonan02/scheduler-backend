@@ -1,6 +1,6 @@
 const db = require("../db/postgres-config");
 
-//Get all users
+//Get user by id
 const getUser =(req, res) => {
     const id = parseInt(req.params.id);
 
@@ -14,6 +14,22 @@ const getUser =(req, res) => {
             res.status(200).json(results.rows);
         })
 }
+
+//Get user by username
+const getUserByUsername = (req,res) => {
+    const { username } = req.body;
+
+    db.pool.query("SELECT * FROM users WHERE username=$1",
+    [username],
+    (err, results) => {
+        if(err) {
+            res.status(404).json({error: "Cannot find user"});
+            return;
+        }
+        res.status(200).send(results.rows);
+    })
+}
+
 
 //Create user query
 const createUser = (req, res) => {
@@ -32,5 +48,6 @@ const createUser = (req, res) => {
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    getUserByUsername
 }

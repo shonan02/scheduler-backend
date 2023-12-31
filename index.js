@@ -12,6 +12,8 @@ app.get("/", (req, res) => {
     res.status(200).json({message: "correct"});
 })
 
+//User controller routes
+app.get("/users", userController.getUserByUsername);
 app.get("/users/:id", userController.getUser);
 app.post("/users", userController.createUser);
 

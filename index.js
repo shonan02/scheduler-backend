@@ -8,6 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Define routes
+app.get("/", (req, res) => {
+    res.status(200).json({message: "correct"});
+})
+
 app.get("/users/:id", userController.getUser);
 app.post("/users", userController.createUser);
 

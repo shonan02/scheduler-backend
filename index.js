@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const userController = require('./controllers/users');
+const loginController = require('./controllers/login');
 
 //Middleware declarations
 app.use(express.json());
@@ -17,6 +18,8 @@ app.get("/users", userController.getUserByUsername);
 app.get("/users/:id", userController.getUser);
 app.post("/users", userController.createUser);
 
+//Login controller
+app.post('/login', loginController.login);
 
 const PORT = 5000;
 

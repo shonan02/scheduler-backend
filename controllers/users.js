@@ -5,7 +5,7 @@ const getUser =(req, res) => {
     const id = parseInt(req.params.id);
 
     //Create query 
-    db.pool.query('SELECT * FROM users WHERE id=$1',
+    db.pool.query('SELECT * FROM users WHERE user_id=$1',
         [id],
         (err, results) => {
             if(err) {

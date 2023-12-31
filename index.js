@@ -1,8 +1,16 @@
-const pool = require("postgres-config");
-
 const express = require("express");
-
 const app = express();
+
+const userController = require('./controllers/users');
+
+//Middleware declarations
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Define routes
+app.get("/users/:id", userController.getUser);
+app.post("/users", userController.createUser);
+
 
 const PORT = 5000;
 

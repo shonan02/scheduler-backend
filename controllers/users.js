@@ -1,4 +1,4 @@
-const db = require("../postgres-config");
+const db = require("../db/postgres-config");
 
 //Get all users
 const getUser =(req, res) => {

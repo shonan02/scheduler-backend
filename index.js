@@ -18,6 +18,8 @@ app.get("/users", userController.getUserByUsername);
 app.get("/users/:id", userController.getUser);
 app.post("/users", userController.createUser);
 
+//Facebook api
+app.post("link/facebook", )
 //Login controller
 app.post('/login', loginController.login);
 

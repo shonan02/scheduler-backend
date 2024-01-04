@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
 const session = require("express-session");
+
 
 const userController = require('./controllers/users');
 const loginController = require('./controllers/login');
@@ -18,6 +21,7 @@ app.use(session({
 //Middleware declarations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -54,6 +58,7 @@ passport.deserializeUser((id, done) => {
     done(null, id);
 })
 
+
 //Define routes
 app.get("/", (req, res) => {
     res.status(200).json({message: "correct"});
@@ -64,6 +69,8 @@ app.get("/users", userController.getUserByUsername);
 app.get("/users/:id", userController.getUser);
 app.post("/users", userController.createUser);
 
+//Facebook api
+app.post("auth/facebook", )
 //Login controller
 app.post('/login', loginController.login);
 
